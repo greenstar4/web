@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Green Star</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * { box-sizing:border-box; margin: 0; padding: 0; }
+  
+    body {
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0f0f0f;
+      color: #e0ffe0;
+    }
+    header{
+        position : fixed;
+             top : 0;
+            left : 0;
+           right : 0;
+          height : 40px;
+background-color : #202123;
+         display : flex;
+     align-items : center;
+         padding : 0 30px;
+      box-shadow : 0 2px 8px rgba(0, 0, 0, 0.7);
+         z-index : 1001;
+           color : #4ade80;
+     font-weight : bold;
+    }
+  
+    .menu-toggle {
+      position: fixed;
+      top: 10px;
+      left: 15px;
+      background: none;
+      border: none;
+      color: #4ade80;
+      font-size: 1.5rem;
+      z-index: 1100;
+      cursor: pointer;
+    }
+  
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -240px;
+      width: 240px;
+      height: 100%;
+      background-color: #1f1f1f;
+      display: flex;
+      flex-direction: column;
+      padding-top: 60px;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+
+   .sidebar.open {
+      left: 0;
+    }
+
+    .sidebar .logo {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      color: #4ade80;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .sidebar a {
+      color: #ccc;
+      padding: 14px 20px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: background 0.2s, color 0.2s;
+    }
+  
+
+    .sidebar a i {
+      width: 20px;
+      text-align:center;
+    }
+
+    .sidebar a:hover {
+      background-color: #2e2e2e;
+      color: #4ade80;
+    }
+
+    main {
+      padding: 70px 20px 20px 20px;
+    }
+
+    @media (min-width: 769px) {
+      .sidebar {
+        left: 0;
+      }
+
+      .menu-toggle {
+        display: none;
+      }
+
+      main {
+        margin-left: 240px;
+      }
+    }
+
+    .post-preview {
+      background-color: #1a1a1a;
+      border-left: 4px solid #4ade80;
+      box-shadow: 0 4px 12px rgba(0, 255, 0, 0.15);
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .post-preview:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0, 255, 0, 0.25);
+    }
+
+    .post-preview h1,
+    .post-preview h2 {
+      color: #4ade80;
+      font-size: 1.3rem;
+      margin-top: 0;
+      margin-bottom: 0.3em;
+    }
+
+    .post-preview time {
+      font-size: 0.8rem;
+      color: #999;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .post-preview p {
+      color: #ccc;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+      line-height: 1.4;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+
+    a.read-more {
+      text-decoration: none;
+      color: #4ade80;
+      font-weight: bold;
+    }
+
+    a.read-more:hover {
+      color: #76f5a1;
+      text-decoration: underline;
+    }
+     
+   </style>
+  
+</head>
+<body>
+  <header>  
+  <button class="menu-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+
+  <nav style="display: flex; align-items: center; background-color: #1a1a1a; padding: 10px;">
+    <h1 style="color: #00ff88; margin: 0; font-family: "Trebuchet MS", sans-serif;	">GREEN STAR</h1>
+  </nav>
+    <!-- Load Font Awesome for the share icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Share Button -->
+    <button onclick="sharePost()"  style="background: transparent; border: none; cursor: pointer;">
+  <i class="fas fa-share-alt" style="color: #4ade80; font-size: 30px;"></i>
+</button>
+
+<script>
+function sharePost() {
+  if (navigator.share) {
+    navigator.share({
+      title: document.title,
+      text : "Check this out!",
+       url : window.location.href
+    })
+    .then(() => console.log('Shared successfully'))
+    .catch((error) => console.log('Error sharing:', error));
+  } else {
+    alert("Sharing is not supported on this browser. You can copy the URL.");
+  }
+}
+</script>
+    
+</header>
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">Green Star</div>
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="about.html"><i class="fas fa-user"></i> About</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+    <a href="https://youtube.com/@green_star_0.8"><i class="fab fa-youtube"></i> YouTube</a>
+    <a href="privacy.html"><i class="fas fa-shield"></i>Privacy Policy</a>
+  </aside>
+  
+  <main>
+      <div class="post-preview">
+      <h1>Welcome to My Blog</h1>
+      <time datetime="2025-06-02">June 2, 2025</time>
+      <p>This is the first post on my classic-themed blog. I’ll be sharing my thoughts on writing, creativity, and web design here regularly.</p>
+      <a href="post1.html" class="read-more">Read More</a>
+      </div>
+  </main>
+
+  <script>
+    function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
